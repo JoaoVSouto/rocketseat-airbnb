@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const app = express();
 
@@ -12,8 +13,8 @@ mongoose
   .then(() => console.log('Connected to database!'))
   .catch(err => console.log('Error while connecting to database:', err));
 
+app.use(cors());
 app.use(express.json());
-
 app.use(require('./routes'));
 
 app.listen(3333, () => console.log('server listening on 3333...'));
